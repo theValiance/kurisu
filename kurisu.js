@@ -10,9 +10,13 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === 'update'){
-		msg.reply('Checking for updates...');
-		exec('git pull origin', function(error, stdout, stderr){});
-		process.exit();
+		msg.reply('Checking for updates...')
+			.then(() =>{
+				exec('git pull origin', function(error, stdout, stderr){});
+			})
+			.then(() =>{
+				process.exit();
+		});
 	}
 });
 
