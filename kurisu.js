@@ -2,7 +2,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const exec = require('child_process').exec;
-const token = 'Mjg1NTkxNjU4MTY1NDM2NDE2.C9wPGQ.s7zsiACduR2oxmAzw9WMCw3t-ok';
+const fs = require('fs');
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
@@ -23,7 +23,11 @@ client.on('message', msg => {
 						msg.reply('Already up to date.');
 					}
 					else{
-						process.exit(0);
+						fs.writeFile('updated.txt', '', (err)=>{
+							if (err) throw err;
+							console.log('Exiting...');
+							process.exit(0);
+						});
 					}
 				});
 			});
@@ -31,4 +35,8 @@ client.on('message', msg => {
 });
 
 console.log('Starting up...');
-client.login(token);
+fs.readFile('token.txt', {encoding: 'utf-8'}, (err, data) =>{
+	if (!err){
+		client.login(data);
+	}
+});
