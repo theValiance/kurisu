@@ -12,7 +12,7 @@ client.on('message', msg => {
 	if (msg.content === 'update'){
 		var sentMessage = msg.reply('Checking for updates...')
 			.then((msg) =>{
-				var gitProc = spawn('git', ['pull origin']);
+				var gitProc = spawn('git pull origin');
 			
 				if (gitProc.stdout === 'Already up-to-date.'){
 					msg.reply('Already up to date.');
