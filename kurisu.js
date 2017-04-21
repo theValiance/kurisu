@@ -14,6 +14,6 @@ client.on('message', msg => {
 		exec('git pull origin', function(error, stdout, stderr){});
 		process.exit();
 	}
-}
+});
 
 client.login(token);
