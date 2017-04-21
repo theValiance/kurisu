@@ -30,4 +30,5 @@ client.on('message', msg => {
 	}
 });
 
+console.log('Starting up...');
 client.login(token);
