@@ -1,7 +1,7 @@
 //set up the discord client
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const spawn = require('child_process').spawn;
+const spawn = require('child_process').spawnSync;
 const token = 'Mjg1NTkxNjU4MTY1NDM2NDE2.C9wPGQ.s7zsiACduR2oxmAzw9WMCw3t-ok';
 
 client.on('ready', () => {
@@ -10,22 +10,16 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === 'update'){
-		msg.reply('Checking for updates...')
-			.then(() =>{
+		var sentMessage = msg.reply('Checking for updates...')
+			.then((msg) =>{
 				var gitProc = spawn('git', ['pull origin']);
 			
-				//when there is some data output
-				gitProc.stdout.on('data', (data) =>{
-					console.log('stdout: ${data}');
-				});
-			
-				gitProc.stderr.on('data', (data) =>{
-					console.log('stderr: ${data}');	
-				});
-			
-				gitProc.on('close', (code) => {
-					process.exit(0);	
-				});
+				if (gitProc.stdout === 'Already up-to-date.'){
+					msg.reply('Already up to date.');
+				}
+				else{
+					process.exit(0);
+				}
 			});
 	}
 });
