@@ -12,7 +12,7 @@ client.on('message', msg => {
 	if (msg.content === 'update'){
 		msg.reply('Checking for updates...')
 			.then(() =>{
-				var gitProc = spawn('git pull origin');
+				var gitProc = spawn('git', ['pull origin']);
 			
 				//when there is some data output
 				gitProc.stdout.on('data', (chunk) =>{
