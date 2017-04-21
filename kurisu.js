@@ -15,8 +15,8 @@ client.on('message', msg => {
 				var gitProc = spawn('git', ['pull origin']);
 			
 				//when there is some data output
-				gitProc.stdout.on('data', (chunk) =>{
-					console.log(chunk);
+				gitProc.stdout.on('data', (data) =>{
+					console.log('stdout: ${data}');
 				});
 			
 				gitProc.on('close', (code) => {
