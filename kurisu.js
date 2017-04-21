@@ -19,7 +19,7 @@ client.on('message', msg => {
   					}
   					console.log(`stdout: ${stdout}`);
   					console.log(`stderr: ${stderr}`);
-					if (stdout === 'Already up-to-date.'){
+					if (stdout === 'Already up-to-date.\n'){
 					
 					}
 					else{
