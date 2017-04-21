@@ -1,0 +1,11 @@
+#ignore files potentially left behind by editor tools
+*~
+
+#ignore json files used for program storage
+*.json
+
+#ignore .txt files
+*.txt
+
+#ignore save files left by pm2
+*.save
