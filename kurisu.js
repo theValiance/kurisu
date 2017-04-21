@@ -14,12 +14,10 @@ client.on('message', msg => {
 			.then((msg) =>{
 				var gitProc = spawn('git pull origin');
 			
-				if (gitProc.stdout === 'Already up-to-date.'){
-					msg.reply('Already up to date.');
-				}
-				else{
-					process.exit(0);
-				}
+				console.log(gitProc.stdout)
+					.then(() =>{
+						process.exit(0);
+					});
 			});
 	}
 });
