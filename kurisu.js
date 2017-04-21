@@ -37,6 +37,6 @@ client.on('message', msg => {
 console.log('Starting up...');
 fs.readFile('token.txt', {encoding: 'utf-8'}, (err, data) =>{
 	if (!err){
-		client.login(data);
+		client.login(decodeURIComponent(escape(data)));
 	}
 });
