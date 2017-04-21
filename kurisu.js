@@ -1,8 +1,8 @@
 //set up the discord client
-const var Discord = require("discord.js");
-const var client = new Discord.Client();
-const var spawn = require('child_process').spawn;
-const var token = 'Mjg1NTkxNjU4MTY1NDM2NDE2.C9wPGQ.s7zsiACduR2oxmAzw9WMCw3t-ok';
+const Discord = require("discord.js");
+const client = new Discord.Client();
+const spawn = require('child_process').spawn;
+const token = 'Mjg1NTkxNjU4MTY1NDM2NDE2.C9wPGQ.s7zsiACduR2oxmAzw9WMCw3t-ok';
 
 client.on('ready', () => {
 	console.log('Logged in as ${client.user.username}');
