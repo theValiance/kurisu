@@ -19,6 +19,10 @@ client.on('message', msg => {
 					console.log('stdout: ${data}');
 				});
 			
+				gitProc.stderr.on('data', (data) =>{
+					console.log('stderr: ${data}');	
+				});
+			
 				gitProc.on('close', (code) => {
 					process.exit(0);	
 				});
