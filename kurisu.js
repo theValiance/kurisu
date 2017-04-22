@@ -15,7 +15,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === 'update'){
-		var sentMessage = msg.reply('Checking for updates...')
+		msg.channel.sendMessage('Checking for updates...')
 			.then((msg) =>{
 				var gitProc = exec('git pull origin', (error, stdout, stderr) => {
 					if (error) {
