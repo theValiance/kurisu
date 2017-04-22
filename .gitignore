@@ -7,8 +7,9 @@
 #ignore .txt files
 *.txt
 
-#ignore the Readme, it's not needed on the host machine
+#ignore the Readme and License, they're not needed on the host machine
 README.md
+LICENSE
 
 #ignore potential save files left by pm2
 *.save
