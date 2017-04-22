@@ -31,7 +31,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	//console.log(`Command might be: ${pullCommand(msg.content)}`);
+	console.log(`${pullCommand(msg.content)}`);
 	if (msg.isMentioned(client.user)){
 		var command = pullCommand(msg);
 		if (command === '!update'){
