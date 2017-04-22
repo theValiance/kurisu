@@ -31,6 +31,9 @@ client.on('message', msg => {
 						fs.writeFile('updated.txt', '', (err)=>{
 							if (err) throw err;
 							msg.edit('Update found. Updating...');
+								//.then(msg)
+							
+							
 							process.exit(0);
 						});
 					}
