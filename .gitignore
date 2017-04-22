@@ -9,7 +9,7 @@
 
 #ignore the Readme and License, they're not needed on the host machine
 README.md
-LICENSE
+LICENSE.md
 
 #ignore potential save files left by pm2
 *.save
