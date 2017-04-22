@@ -33,7 +33,7 @@ client.on('ready', () => {
 client.on('message', msg => {
 	var command = pullCommand(msg.content);
 	console.log(`${command}`);
-	if (msg.isMentioned(client.user.id)){
+	if (msg.isMemberMentioned(client.user)){
 		console.log('Was mentioned');
 		if (command == '!update'){
 			msg.channel.sendMessage('Checking for updates...')
