@@ -2,6 +2,8 @@
 +Fixed a few formatting issues
 +Fixed an off-by-one error in the version detector
 +Versions are now bolded when the update completes
++Updated the project license to an MIT model
++README.md and LICENSE.md should no longer be pulled to the host when updating
 }
 0.1.1{
 +Added changelists
