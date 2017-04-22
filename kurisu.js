@@ -19,7 +19,7 @@ function pullCommand(string){
 		while ((i < string.length) && (string.charAt(i) != ' ')){
 			i++;
 		}
-		return string.slice(start, i-1);
+		return string.slice(start, i);
 	}
 	else{
 		return -1;	
@@ -34,7 +34,7 @@ client.on('message', msg => {
 	console.log(`${pullCommand(msg.content)}`);
 	if (msg.isMentioned(client.user)){
 		var command = pullCommand(msg.content);
-		if (command === '!update'){
+		if (command == '!update'){
 			msg.channel.sendMessage('Checking for updates...')
 				.then((msg) =>{
 					var gitProc = exec('git pull origin', (error, stdout, stderr) => {
