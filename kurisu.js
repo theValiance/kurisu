@@ -30,7 +30,7 @@ client.on('message', msg => {
 					else{
 						fs.writeFile('updated.txt', '', (err)=>{
 							if (err) throw err;
-							console.log('Exiting...');
+							msg.edit('Update found. Updating...');
 							process.exit(0);
 						});
 					}
@@ -50,6 +50,7 @@ fs.readFile('masterId.txt', 'utf8', (err, data) =>{
 fs.readFile('adminList.txt', 'utf8', (err, data) => {
 	if (!err){
 		admins = data.split('\n');
+		admins.pop();
 		console.log(`Admins: ${admins}`);
 	}
 });
