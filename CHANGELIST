@@ -1,3 +1,8 @@
+0.1.2{
++Fixed a few formatting issues
++Fixed an off-by-one error in the version detector
++Versions are now bolded when the update completes
+}
 0.1.1{
 +Added changelists
 +Added Version Announcements/Improved update text
