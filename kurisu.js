@@ -14,11 +14,16 @@ var commandIndicator = '!';
 
 function pullCommand(string){
 	var start = string.indexOf(commandIndicator);
-	var i = (start + 1);
-	while ((i < string.length) && (string.charAt(i) != ' ')){
-		i++;
+	if (start != -1){
+		var i = (start + 1);
+		while ((i < string.length) && (string.charAt(i) != ' ')){
+			i++;
+		}
+		return string.slice(start, i);
 	}
-	return string.slice(start, i);
+	else{
+		return -1;	
+	}
 }
 
 client.on('ready', () => {
@@ -26,9 +31,10 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	console.log(`Command might be: ${pullCommand(msg.content)}`);
+	//console.log(`Command might be: ${pullCommand(msg.content)}`);
 	if (msg.isMentioned(client.user)){
-		if (msg.content === 'update'){
+		var command = pullCommand(msg);
+		if (command === '!update'){
 			msg.channel.sendMessage('Checking for updates...')
 				.then((msg) =>{
 					var gitProc = exec('git pull origin', (error, stdout, stderr) => {
