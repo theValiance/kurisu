@@ -1,3 +1,4 @@
+"use strict";
 //set up the discord client and other constants
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -7,7 +8,8 @@ const fs = require('fs');
 //global vars
 var token = '';
 var masterID = 0;
-var admins = []
+var admins = [];
+var version = 0.0.0;
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
@@ -28,19 +30,15 @@ client.on('message', msg => {
 						msg.edit('Already up to date.');
 					}
 					else{
-						fs.writeFile('updated.txt', '', (err)=>{
+						fs.readFile('README.md', 'utf8', (err, data) =>{
 							if (!err){
-								fs.readFile('VERSION', 'utf8', (err, data) =>{
-									if (!err){
-										var version = data.replace('\n', '');
-										msg.edit(`Updated to version ${version}`)
-											.then(() =>{
-												process.exit(0);
-											});
-									}
-								});	
+								var version = data.replace('\n', '');
+								msg.edit(`Updated to version ${version}`)
+									.then(() =>{
+										process.exit(0);
+									});
 							}
-						});
+						});	
 					}
 				});
 			});
