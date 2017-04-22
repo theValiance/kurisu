@@ -38,7 +38,7 @@ client.on('message', msg => {
 								msg.edit(`Updated to version **${version}**`)
 									.then((msg) =>{
 										var changelist = data.slice(startPos+1, endPos-1);
-										msg.channel.sendMessage("`" + `${changelist}` + "`")
+										msg.channel.sendMessage("```" + `${changelist}` + "```")
 											.then(()=>{
 												process.exit(0);
 											});
