@@ -13,7 +13,7 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
 });
 
-client.on('message', msg.toLowerCase() => {
+client.on('message', msg => {
 	if (msg.content === 'update'){
 		msg.channel.sendMessage('Checking for updates...')
 			.then((msg) =>{
