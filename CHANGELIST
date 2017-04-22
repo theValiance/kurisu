@@ -1,4 +1,4 @@
-0.1.5{
+0.1.4{
 +Fixed more formatting issues
 +Constructed a makeshift method for command scrubbing (it will be replaced with something smarter later)
 +COMMANDS SHOULD WORK AGAIN
