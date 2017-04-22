@@ -16,7 +16,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	if (msg.mentions.users.has(client.user.id)){
+	console.log(`Message recieved: ${msg}`);
+	if (msg.isMentioned(client.user)){
 		if (msg.content === 'update'){
 			msg.channel.sendMessage('Checking for updates...')
 				.then((msg) =>{
