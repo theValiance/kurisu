@@ -4,6 +4,7 @@
 +Versions are now bolded when the update completes
 +Updated the project license to an MIT model
 +README.md and LICENSE.md should no longer be pulled to the host machine when updating
++Commands should now require the bot to be mentioned to run
 }
 0.1.1{
 +Added changelists
