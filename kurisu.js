@@ -19,7 +19,7 @@ function pullCommand(string){
 		while ((i < string.length) && (string.charAt(i) != ' ')){
 			i++;
 		}
-		return string.slice(start+1, i);
+		return string.slice(start, i-1);
 	}
 	else{
 		return -1;	
