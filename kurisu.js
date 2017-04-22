@@ -49,7 +49,7 @@ fs.readFile('masterId.txt', 'utf8', (err, data) =>{
 });
 fs.readFile('adminList.txt', 'utf8', (err, data) => {
 	if (!err){
-		admins = data.split('\n').pop();
+		admins = data.split('\n');
 		console.log(`Admins: ${admins}`);
 	}
 });
