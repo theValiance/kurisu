@@ -10,13 +10,23 @@ var token = '';
 var masterID = 0;
 var admins = [];
 var version = "0.0.0";
+var commandIndicator = '!';
+
+function pullCommand(string){
+	var start = string.indexOf(commandIndicator);
+	var i = (start + 1);
+	while ((i < string.length) && (string.charAt(i) != ' ')){
+		i++;
+	}
+	return string.slice(start, i);
+}
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
 });
 
 client.on('message', msg => {
-	console.log(`Message recieved: ${msg}`);
+	console.log(`Command might be: ${pullCommand(msg.content)}`);
 	if (msg.isMentioned(client.user)){
 		if (msg.content === 'update'){
 			msg.channel.sendMessage('Checking for updates...')
