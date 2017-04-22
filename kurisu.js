@@ -25,7 +25,7 @@ client.on('message', msg => {
   					console.log(`stdout: ${stdout}`);
   					console.log(`stderr: ${stderr}`);
 					if (stdout === 'Already up-to-date.\n'){
-						msg.reply('Already up to date.');
+						msg.edit('Already up to date.');
 					}
 					else{
 						fs.writeFile('updated.txt', '', (err)=>{
