@@ -6,7 +6,7 @@ const fs = require('fs');
 
 //global vars
 var token = '';
-var masterId = 0;
+var masterID = 0;
 var admins = []
 
 client.on('ready', () => {
@@ -43,16 +43,20 @@ client.on('message', msg => {
 //read private startup files
 fs.readFile('masterId.txt', 'utf8', (err, data) =>{
 	if (!err){
-		masterId = data.replace('\n', '');
+		masterID = data.replace('\n', '');
+		console.log(`Master ID: ${masterID}`);
 	}
 });
 fs.readFile('adminList.txt', 'utf8', (err, data) => {
 	if (!err){
 		admins = data.split('\n').pop();
+		console.log(`Admins: ${admins}`);
 	}
 });
 fs.readFile('token.txt', 'utf8', (err, data) =>{
 	if (!err){
 		token = data.replace('\n', '');
+		console.log(`Token: ${token}`);
+		client.login(token);
 	}
 });
