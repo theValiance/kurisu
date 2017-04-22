@@ -9,7 +9,7 @@ const fs = require('fs');
 var token = '';
 var masterID = 0;
 var admins = [];
-var version = 0.0.0;
+var version = "0.0.0";
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
