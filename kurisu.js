@@ -29,12 +29,17 @@ client.on('message', msg => {
 					}
 					else{
 						fs.writeFile('updated.txt', '', (err)=>{
-							if (err) throw err;
-							msg.edit('Update found. Updating...');
-								//.then(msg)
-							
-							
-							process.exit(0);
+							if (!err){
+								fs.readFile('VERSION', 'utf8', (err, data) =>{
+									if (!err){
+										var version = data.replace('\n', '');
+										msg.edit(`Updated to version ${version}`)
+											.then(() =>{
+												process.exit(0);
+											});
+									}
+								});	
+							}
 						});
 					}
 				});
