@@ -1,8 +1,13 @@
-//set up the discord client
+//set up the discord client and other constants
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const exec = require('child_process').exec;
 const fs = require('fs');
+
+//global vars
+var token = '';
+var masterId = 0;
+var admins = []
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
@@ -34,10 +39,20 @@ client.on('message', msg => {
 	}
 });
 
-console.log('Starting up...');
-fs.readFile('token.txt', 'utf8', (err, data) =>{
-	console.log(data);
+
+//read private startup files
+fs.readFile('masterId.txt', 'utf8', (err, data) =>{
 	if (!err){
-		client.login(data.replace('\n', ''));
+		masterId = data.replace('\n', '');
+	}
+});
+fs.readFile('adminList.txt', 'utf8', (err, data) => {
+	if (!err){
+		admins = data.split('\n').pop();
+	}
+});
+fs.readFile('token.txt', 'utf8', (err, data) =>{
+	if (!err){
+		token = data.replace('\n', '');
 	}
 });
