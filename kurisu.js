@@ -13,7 +13,7 @@ var version = "0.0.0";
 var commandIndicator = '!';
 
 function messageContainsMention(message, mentioned){ //requires an ID to check for
-	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1));
+	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
 }
 
 function pullCommand(string){
@@ -36,7 +36,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	var command = pullCommand(msg.content);
-	console.log(`${msg}`);
+	console.log(`${msg.author.username}: ${msg}`);
 	if (messageContainsMention(msg, client.user.id)){
 		console.log('Mentioned!');    
 	}
