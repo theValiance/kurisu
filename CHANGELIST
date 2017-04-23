@@ -1,3 +1,7 @@
+0.1.6{
++More debug stuff for me to look at
++Fixed an issue with the mention checker function (it seems that mentioning a bot is slightly different from mentioning a user?)
+}
 0.1.5{
 +Added some debug stuff server-side
 }
