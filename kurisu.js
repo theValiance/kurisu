@@ -13,7 +13,7 @@ var version = "0.0.0";
 var commandIndicator = '!';
 
 function messageContainsMention(message, mentioned){ //requires an ID to check for
-	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1);
+	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1));
 }
 
 function pullCommand(string){
