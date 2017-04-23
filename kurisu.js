@@ -12,6 +12,10 @@ var admins = [];
 var version = "0.0.0";
 var commandIndicator = '!';
 
+function messageContainsMention(message, mentioned){ //requires an ID to check for
+	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>'));
+}
+
 function pullCommand(string){
 	var start = string.indexOf(commandIndicator);
 	if (start != -1){
