@@ -82,6 +82,12 @@ client.on('message', msg => {
 		var days = ((((((((uptime - millis) / 1000) - seconds) / 60) - minutes) / 60) - hours) / 24);
 		msg.channel.sendMessage(`I have been online for ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds and ${millis} milliseconds.`);
 	}
+	else if (command == '!source'){
+		msg.channel.sendMessage('You can find an up-to-date copy of my source code at https://github.com/theValiance/kurisu.');
+	}
+	else if (command == '!help'){
+		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
+	}
 });
 
 
