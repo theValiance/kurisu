@@ -36,7 +36,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	var command = pullCommand(msg.content);
-	console.log(`${command}`);
+	console.log(`${msg}`);
 	if (messageContainsMention(msg, client.user.id)){
 		console.log('Mentioned!');    
 	}
