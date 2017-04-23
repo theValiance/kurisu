@@ -1,3 +1,8 @@
+0.1.5{
++Added a custom function to check if a message contains a mention (not in use yet)
++Fixed some bugs
++Added the uptime command
+}
 0.1.4{
 +Fixed more formatting issues
 +Constructed a makeshift method for command scrubbing (it will be replaced with something smarter later)
