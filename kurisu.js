@@ -13,7 +13,7 @@ var version = "0.0.0";
 var commandIndicator = '!';
 
 function messageContainsMention(message, mentioned){ //requires an ID to check for
-	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>'));
+	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1);
 }
 
 function pullCommand(string){
@@ -37,6 +37,9 @@ client.on('ready', () => {
 client.on('message', msg => {
 	var command = pullCommand(msg.content);
 	console.log(`${command}`);
+	if (messageContainsMention(msg, client.user.id)){
+		console.log('Mentioned!');    
+	}
 	if (command == '!update'){
 		msg.channel.sendMessage('Checking for updates...')
 			.then((msg) =>{
