@@ -73,6 +73,15 @@ client.on('message', msg => {
 				});
 			});
 	}
+	else if (command == '!uptime'){
+		var uptime = client.uptime;
+		var millis = (uptime % 1000);
+		var seconds = (((uptime - millis) / 1000) % 60);
+		var minutes = (((((uptime - millis) / 1000) - seconds) / 60) % 60);
+		var hours = (((((((uptime - millis) / 1000) - seconds) / 60) - minutes) / 60) % 24);
+		var days = ((((((((uptime - millis) / 1000) - seconds) / 60) - minutes) / 60) - hours) / 24);
+		msg.channel.sendMessage(`I have been online for ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds and ${millis} milliseconds.`);
+	}
 });
 
 
