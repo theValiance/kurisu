@@ -1,3 +1,6 @@
+0.1.5{
++Added some debug stuff server-side
+}
 0.1.4{
 +Added a custom function to check if a message contains a mention (not in use yet)
 +Fixed some bugs
