@@ -9,7 +9,6 @@ const fs = require('fs');
 var token = '';
 var masterID = 0;
 var admins = [];
-var version = "0.0.0";
 var commandIndicator = '!';
 
 function messageContainsMention(message, mentioned){ //requires an ID to check for
@@ -23,7 +22,7 @@ function pullCommand(string){
 		while ((i < string.length) && (string.charAt(i) != ' ')){
 			i++;
 		}
-		return string.slice(start, i);
+		return string.slice(start + 1, i);
 	}
 	else{
 		return -1;	
@@ -37,10 +36,7 @@ client.on('ready', () => {
 client.on('message', msg => {
 	var command = pullCommand(msg.content);
 	console.log(`${msg.author.username}: ${msg}`);
-	if (messageContainsMention(msg, client.user.id)){
-		console.log('Mentioned!');    
-	}
-	if (command == '!update'){
+	if (command == 'update'){
 		msg.channel.sendMessage('Checking for updates...')
 			.then((msg) =>{
 				var gitProc = exec('git pull origin', (error, stdout, stderr) => {
@@ -73,7 +69,7 @@ client.on('message', msg => {
 				});
 			});
 	}
-	else if (command == '!uptime'){
+	else if (command == 'uptime'){
 		var uptime = client.uptime;
 		var millis = (uptime % 1000);
 		var seconds = (((uptime - millis) / 1000) % 60);
@@ -82,14 +78,11 @@ client.on('message', msg => {
 		var days = ((((((((uptime - millis) / 1000) - seconds) / 60) - minutes) / 60) - hours) / 24);
 		msg.channel.sendMessage(`I have been online for ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds and ${millis} milliseconds.`);
 	}
-	else if (command == '!source'){
+	else if (command == 'source'){
 		msg.channel.sendMessage('You can find an up-to-date copy of my source code at https://github.com/theValiance/kurisu');
 	}
-	else if (command == '!help'){
+	else if (command == 'help'){
 		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
-	}
-	else if (command == '!meme'){
-		msg.channel.sendMessage(`${msg.author.username} is a meme.`);
 	}
 });
 
