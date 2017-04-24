@@ -88,6 +88,9 @@ client.on('message', msg => {
 	else if (command == '!help'){
 		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
 	}
+	else if (command == '!meme'){
+		msg.chanel.sendMessage('Eric is a meme!');
+	}
 });
 
 
