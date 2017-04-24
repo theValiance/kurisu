@@ -29,11 +29,32 @@ function pullCommand(string){
 	}
 }
 
+function fetchServerData(){
+	return 0;
+}
+
+function fetchServerSetting(){
+	return 0;
+}
+
+function updateServerSetting(){
+	return 0;
+}
+
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
 });
 
-client.on('message', msg => {
+client.on('disconnect', () => {
+	console.log('Connection lost, restarting.');
+	process.exit(1);
+});
+
+client.on('guildMemberAdd', (member) => {
+	console.log('New member connected.');
+});
+
+client.on('message', (msg) => {
 	var command = pullCommand(msg.content);
 	console.log(`${msg.author.username}: ${msg}`);
 	if (command == 'update'){
