@@ -1,4 +1,5 @@
 "use strict";
+
 //set up the discord client and other constants
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -11,7 +12,7 @@ var masterID = 0;
 var admins = [];
 var commandIndicator = '!';
 
-function messageContainsMention(message, mentioned){ //requires an ID to check for
+function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for bots)
 	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
 }
 
@@ -25,7 +26,7 @@ function pullCommand(string){
 		return string.slice(start + 1, i);
 	}
 	else{
-		return -1;	
+		return -1;
 	}
 }
 
