@@ -127,6 +127,9 @@ fs.readFile('token.txt', 'utf8', (err, data) =>{
 	if (!err){
 		token = data.replace('\n', '');
 		console.log(`Token: ${token}`);
-		client.login(token);
+		client.login(token)
+			.then((string)=>{
+				console.log(string);
+			});
 	}
 });
