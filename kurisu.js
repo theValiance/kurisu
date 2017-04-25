@@ -76,7 +76,7 @@ client.on('message', (msg) => {
 							if (!err){
 								var startPos = data.indexOf('{');
 								var endPos = data.indexOf('}');
-								version = data.slice(0, startPos);
+								var version = data.slice(0, startPos);
 								msg.edit(`Updated to version **${version}**`)
 									.then((msg) =>{
 										var changelist = data.slice(startPos+1, endPos-1);
