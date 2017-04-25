@@ -103,6 +103,10 @@ client.on('message', (msg) => {
 	else if (command == 'source'){
 		msg.channel.sendMessage('You can find an up-to-date copy of my source code at https://github.com/theValiance/kurisu');
 	}
+	else if (command == 'restart'){
+		msg.channel.sendMessage('Restarting...')
+		process.exit();
+	}
 	else if (command == 'help'){
 		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
 	}
