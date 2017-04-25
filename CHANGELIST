@@ -1,3 +1,6 @@
+0.1.9.1{
++Added a debug tool to view login output, so I can find a solution to make the bot try continuously connecting until it succeeds
+}
 0.1.9{
 +The bot will now auto-restart when it gets disconnected, and try connecting again.
 +Added basic event handling for new server connections and for disconnections
