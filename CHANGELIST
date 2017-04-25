@@ -1,4 +1,4 @@
-0.1.9.1{
+0.1.9.2{
 +Added a debug tool to view login output, so I can find a solution to make the bot try continuously connecting until it succeeds
 +Added a restart command
 }
