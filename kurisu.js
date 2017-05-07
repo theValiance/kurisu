@@ -30,16 +30,25 @@ function pullCommand(string){
 	}
 }
 
-function fetchServerData(){
-	return 0;
+function fetchServerData(id){
+	return fs.readFile(`s${id}.json`, 'utf8').then(JSON.parse);
 }
 
-function fetchServerSetting(){
-	return 0;
+function fetchServerSetting(id, setting){
+	return fs.readFile(`s${id}.json`, 'utf8').then((err, data) => {
+		return JSON.parse(data)[setting];
+	});
 }
 
-function updateServerSetting(){
-	return 0;
+function updateServerSetting(id, setting, value){
+	return fs.readFile(`s${id}.json`, 'utf8')
+		.then((err, data) => {
+			var obj = JSON.parse(data);
+			obj[setting] = value;
+		})
+			.then((obj) => {
+				fs.writeFile(`s${id}.json`, JSON.stringify(obj), 'utf8');
+			});
 }
 
 client.on('ready', () => {
@@ -109,6 +118,14 @@ client.on('message', (msg) => {
 	}
 	else if (command == 'help'){
 		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
+	}
+	else if (command == 'test1'){
+		updateServerSetting(msg.guild.id, 'test', msg.content);
+	}
+	else if (command == 'test2'){
+		fetchServerData(msg.guild.id).then((res) => {
+			msg.channel.sendMessage(JSON.stringify(res));
+		});
 	}
 });
 
