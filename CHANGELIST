@@ -1,6 +1,8 @@
-0.1.9.2{
-+Added a debug tool to view login output, so I can find a solution to make the bot try continuously connecting until it succeeds
+0.2.0{
++Updated the libraries the bot is built on, should fix the disconnection issues
 +Added a restart command
++Installed prerequisites on the host machine necessary for voice connectivity, should it be needed in the future
++Added functions for saving and retrieving server data in JSON format, and test functions to verify their functionality
 }
 0.1.9{
 +The bot will now auto-restart when it gets disconnected, and try connecting again.
