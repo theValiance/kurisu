@@ -1,5 +1,6 @@
 0.2.1{
 +Data retrieval functions are now properly asynchronous, using a callback system
++Reverted from uws back to bufferutil (dependencies) because I believe it is causing some issues. If these persist this will be undone
 }
 0.2.0{
 +Updated the libraries the bot is built on, should fix the disconnection issues
