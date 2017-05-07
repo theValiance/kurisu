@@ -1,3 +1,6 @@
+0.2.1{
++Data retrieval functions are now properly asynchronous, using a callback system
+}
 0.2.0{
 +Updated the libraries the bot is built on, should fix the disconnection issues
 +Added a restart command
