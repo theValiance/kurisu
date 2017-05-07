@@ -47,12 +47,13 @@ function fetchServerSetting(id, setting, callback){
 	});
 }
 
-function updateServerSetting(id, setting, value){
+function updateServerSetting(id, setting, value, callback){
 	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
 		if (!err){
 			var obj = JSON.parse(data);
 			obj[setting] = value;
 			fs.writeFile(`s${id}.json`, JSON.stringify(obj), 'utf8');
+			callback();
 		}
 	});
 }
@@ -126,10 +127,12 @@ client.on('message', (msg) => {
 		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
 	}
 	else if (command == 'test1'){
-		updateServerSetting(msg.guild.id, 'test1', msg.content);
+		//updateServerSetting(msg.guild.id, 'test1', msg.content);
 	}
 	else if (command == 'test2'){
-		msg.channel.sendMessage(JSON.stringify(fetchServerData(msg.guild.id)));
+		fetchServerData(msg.guild.id, (data) => {
+			msg.channel.sendMessage(JSON.stringify(data));
+		});
 	}
 });
 
