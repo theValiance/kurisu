@@ -31,12 +31,18 @@ function pullCommand(string){
 }
 
 function fetchServerData(id){
-	return fs.readFile(`s${id}.json`, 'utf8').then(JSON.parse);
+	return fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+		if (!err){
+			return JSON.parse(data);
+		}
+	});
 }
 
 function fetchServerSetting(id, setting){
-	return fs.readFile(`s${id}.json`, 'utf8').then((err, data) => {
-		return JSON.parse(data)[setting];
+	return fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+		if (!err){
+			return JSON.parse(data)[setting];
+		}
 	});
 }
 
@@ -120,12 +126,10 @@ client.on('message', (msg) => {
 		msg.channel.sendMessage('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
 	}
 	else if (command == 'test1'){
-		updateServerSetting(msg.guild.id, 'test', msg.content);
+		updateServerSetting(msg.guild.id, 'test1', msg.content);
 	}
 	else if (command == 'test2'){
-		fetchServerData(msg.guild.id).then((res) => {
-			msg.channel.sendMessage(JSON.stringify(res));
-		});
+		msg.channel.sendMessage(JSON.stringify(fetchServerData(msg.guild.id)));
 	}
 });
 
