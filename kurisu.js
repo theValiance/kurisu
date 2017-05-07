@@ -5,6 +5,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const exec = require('child_process').exec;
 const fs = require('fs');
+const Promise = require('promise');
 
 //global vars
 var token = '';
@@ -30,31 +31,30 @@ function pullCommand(string){
 	}
 }
 
-function fetchServerData(id){
-	return fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+function fetchServerData(id, callback){
+	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
 		if (!err){
-			return JSON.parse(data);
+			callback(JSON.parse(data));
 		}
 	});
 }
 
-function fetchServerSetting(id, setting){
-	return fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+function fetchServerSetting(id, setting, callback){
+	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
 		if (!err){
-			return JSON.parse(data)[setting];
+			callback(JSON.parse(data)[setting]);
 		}
 	});
 }
 
 function updateServerSetting(id, setting, value){
-	return fs.readFile(`s${id}.json`, 'utf8')
-		.then((err, data) => {
+	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+		if (!err){
 			var obj = JSON.parse(data);
 			obj[setting] = value;
-		})
-			.then((obj) => {
-				fs.writeFile(`s${id}.json`, JSON.stringify(obj), 'utf8');
-			});
+			fs.writeFile(`s${id}.json`, JSON.stringify(obj), 'utf8');
+		}
+	});
 }
 
 client.on('ready', () => {
