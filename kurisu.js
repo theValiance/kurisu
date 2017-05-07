@@ -5,7 +5,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const exec = require('child_process').exec;
 const fs = require('fs');
-const Promise = require('promise');
 
 //global vars
 var token = '';
