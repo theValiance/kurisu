@@ -161,6 +161,7 @@ fs.readFile('token.txt', 'utf8', (err, data) =>{
 			})
 			.catch((reason)=>{
 				console.log(`Client login error, reason: $(reason)`);
+				process.exit(1);
 			});
 	}
 });
