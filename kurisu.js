@@ -158,6 +158,9 @@ fs.readFile('token.txt', 'utf8', (err, data) =>{
 		client.login(token)
 			.then((string)=>{
 				console.log(string);
+			})
+			.catch((reason)=>{
+				console.log(`Client login error, reason: $(reason)`);
 			});
 	}
 });
