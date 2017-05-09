@@ -1,6 +1,7 @@
 0.2.2{
 +Improved the logging setup on the host machine (PM2 based)
 +Added a catch statement to the login to handle issues
++Fixed an issue with the console logging (syntactical)
 }
 0.2.1{
 +Data retrieval functions are now properly asynchronous, using a callback system
