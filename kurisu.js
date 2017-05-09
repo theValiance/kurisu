@@ -12,6 +12,9 @@ var masterID = 0;
 var admins = [];
 var commandIndicator = '!';
 
+//login timeout
+var timeout = 
+
 function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for bots)
 	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
 }
@@ -160,7 +163,7 @@ fs.readFile('token.txt', 'utf8', (err, data) =>{
 				console.log(string);
 			})
 			.catch((reason)=>{
-				console.log(`Client login error, reason: $(reason)`);
+				console.log(`Client login error, reason: ${reason}`);
 				process.exit(1);
 			});
 	}
