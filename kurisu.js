@@ -12,9 +12,6 @@ var masterID = 0;
 var admins = [];
 var commandIndicator = '!';
 
-//login timeout
-var timeout = 
-
 function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for bots)
 	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
 }
