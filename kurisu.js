@@ -145,7 +145,7 @@ client.on('message', (msg) => {
 		//updateServerSetting(msg.guild.id, 'test1', msg.content);
 	}
 	else if (command == 'test2'){
-		fetchServerData(msg.guild.id, (data) => {
+		fetchServerData(msg.guild.id).then((data) => {
 			console.log(JSON.stringify(data));
 			msg.channel.send(JSON.stringify(data));
 		});
