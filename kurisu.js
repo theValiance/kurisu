@@ -31,30 +31,46 @@ function pullCommand(string){
 }
 
 function fetchServerData(id, callback){
-	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
-		if (!err){
-			callback(JSON.parse(data));
-		}
+	return new Promise((resolve, reject) => {
+		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+			if (!err){
+				resolve(JSON.parse(data));
+			}
+			else{
+				reject();
+			}
+		});
 	});
 }
 
 function fetchServerSetting(id, setting, callback){
-	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
-		if (!err){
-			callback(JSON.parse(data)[setting]);
-		}
+	return new Promise((resolve, reject) => {
+		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+			if (!err){
+				resolve(JSON.parse(data)[setting]);
+			}
+			else{
+				reject();
+			}
+		});
 	});
 }
 
 function updateServerSetting(id, setting, value, callback){
-	fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
-		if (!err){
-			var obj = JSON.parse(data);
-			obj[setting] = value;
-			fs.writeFile(`s${id}.json`, JSON.stringify(obj), 'utf8');
-			callback();
-		}
+	return new Promise((resolve, reject) => {
+		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
+			if (!err){
+				var obj = JSON.parse(data);
+				obj[setting] = value;
+				fs.writeFile(`s${id}.json`, JSON.stringify(obj), 'utf8');
+				resolve();
+			}
+			else{
+				reject();
+			}
+		});
 	});
+	
 }
 
 client.on('ready', () => {
