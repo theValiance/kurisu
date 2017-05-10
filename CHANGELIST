@@ -1,3 +1,6 @@
+0.2.3{
++Replaced callbacks in the JSON functions with promises
+}
 0.2.2{
 +Improved the logging setup on the host machine (PM2 based)
 +Added a catch statement to the login to handle issues
