@@ -1,3 +1,6 @@
+0.2.5{
++Fixed an issue with the booru logger
+}
 0.2.4{
 +Started splitting advanced functionality into more .js files
 +added !gelbooru command which currently logs something to the console
