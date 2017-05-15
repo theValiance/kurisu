@@ -20,7 +20,7 @@ exports.gelbooru = function(){
 		//console.log(`Status code: ${statusCode}`);
 	    	console.log(res);
 		parser.parseString(res, function(err, result){
-			console.log(JSON.stringify(result));
+			console.log(result);
 		});
 		//return res
 	});
