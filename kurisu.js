@@ -1,10 +1,11 @@
 "use strict";
 
 //set up the discord client and other constants
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const exec = require('child_process').exec;
-const fs = require('fs');
+var Discord = require("discord.js");
+var client = new Discord.Client();
+var exec = require('child_process').exec;
+var fs = require('fs');
+var booru = require('./booru');
 
 //global vars
 var token = '';
@@ -149,6 +150,9 @@ client.on('message', (msg) => {
 			console.log(JSON.stringify(data));
 			msg.channel.send(JSON.stringify(data));
 		});
+	}
+	else if (command == 'gelbooru'){
+		booru.gelbooru();
 	}
 });
 
