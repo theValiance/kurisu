@@ -3,7 +3,7 @@ var request = require('request');
 var xml2js = require('xml2js');
 
 var parser = new xml2js.Parser();
-var url = 'https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&tags=rating:safe+score:>=40+loli';
+var url = 'https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&tags=rating:safe+score:>=40';
 var timeout = 10000;
 var opts = {
 	url : url,
