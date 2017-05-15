@@ -3,17 +3,15 @@ var request = require('request');
 var xml2js = require('xml2js');
 
 var parser = new xml2js.Parser();
-var url = 'https://gelbooru.com/index.php?page=dapi&s=post&q=index';
+var url = 'https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&tags=rating:safe+score:>=40+loli';
 var timeout = 10000;
 var opts = {
-    url : url,
-    timeout : timeout,
-	limit : 1,
-	tags : 'rating:safe+score:>=40'
+	url : url,
+	timeout : timeout
 };
 
 exports.gelbooru = function(){
-    request(opts, function (err, res, body) {
+	request(opts, function (err, res, body) {
 		if (err) {
 			console.dir(err);
 			return;
