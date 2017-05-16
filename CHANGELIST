@@ -1,3 +1,8 @@
+0.2.6{
++Added an XML parser
++Booru API has a test request that should work now
++!gelbooru command should post a link to a single image
+}
 0.2.5{
 +Fixed an issue with the booru logger
 }
