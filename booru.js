@@ -11,17 +11,15 @@ var opts = {
 };
 
 exports.gelbooru = function(){
-	request(opts, function (err, res, body) {
-		if (err) {
-			console.dir(err);
-			return;
-		}
-		//var statusCode = res.statusCode;
-		//console.log(`Status code: ${statusCode}`);
-	    	console.log(body);
-		parser.parseString(body, function(err, result){
-			return result['posts']['post'][0]['$']['file_url'].replace('\n', '');
+	return new Promise((resolve, reject) =>{
+		request(opts, function (err, res, body) {
+			if (err) {
+				console.dir(err);
+				reject(err);
+			}
+			parser.parseString(body, function(err, result){
+				resolve(result['posts']['post'][0]['$']['file_url'].replace('\n', ''));
+			});
 		});
-		//return res
 	});
 };
