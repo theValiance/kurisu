@@ -152,7 +152,9 @@ client.on('message', (msg) => {
 		});
 	}
 	else if (command == 'gelbooru'){
-		msg.channel.send(booru.gelbooru());
+		booru.gelbooru().then((data) => {
+			msg.channel.send(data);
+		});
 	}
 });
 
