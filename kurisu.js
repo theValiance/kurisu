@@ -1,6 +1,6 @@
 "use strict";
 
-//set up the discord client and other constants
+//set up the discord client and require external files
 var Discord = require("discord.js");
 var client = new Discord.Client();
 var exec = require('child_process').exec;
@@ -84,7 +84,7 @@ client.on('disconnect', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-	console.log('New member connected.');
+	member.guild.defaultChannel.send(`Let's all welcome ${member.user.username} to the server!`);
 });
 
 client.on('message', (msg) => {
