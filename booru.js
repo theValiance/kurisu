@@ -8,7 +8,7 @@ var timeout = 10000;
 
 
 exports.gelbooru = function(){
-	var url = `https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=100&tags=rating:safe+score:>=40&pid=${Math.floor((Math.random() * 50)+1)}`;
+	var url = `https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&tags=rating:safe+score:>=40&pid=${Math.floor((Math.random() * 9995)+1)}`;
 	var opts = {
 		url : url,
 		timeout : timeout
@@ -21,7 +21,7 @@ exports.gelbooru = function(){
 				reject(err);
 			}
 			parser.parseString(body, function(err, result){
-				resolve(`https:${result['posts']['post'][Math.floor(Math.random() * 101)]['$']['file_url'].replace('\n', '')}`);
+				resolve(`https:${result['posts']['post'][0]['$']['file_url'].replace('\n', '')}`);
 			});
 		});
 	});
