@@ -1,3 +1,7 @@
+0.2.8{
++Added a welcome message for when a user joins
++Fixed some possible issues with the gelbooru command
+}
 0.2.7{
 +Random booru image picker
 +Fixed url posted by the bot
