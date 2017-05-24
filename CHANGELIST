@@ -1,3 +1,6 @@
+0.2.9.1{
++Fixed a small issue with the gelbooru command that was causing a crash
+}
 0.2.9{
 +Thanks to an accidental discovery, the gelbooru command uses the API's built in JSON return instead of converting to XML bot-side
 +This will result in a performance increase
