@@ -1,3 +1,7 @@
+0.2.9{
++Thanks to an accidental discovery, the gelbooru command uses the API's built in JSON return instead of converting to XML bot-side
++This will result in a performance increase
+}
 0.2.8{
 +Added a welcome message for when a user joins
 +Fixed some possible issues with the gelbooru command
