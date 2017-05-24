@@ -16,7 +16,7 @@ exports.gelbooru = function(){
 				console.dir(err);
 				reject(err);
 			}
-			resolve(`https:${ JSON.parse(res)[0]["file_url"]}`);
+			resolve(`https:${JSON.parse(body)[0]["file_url"]}`);
 		});
 	});
 };
