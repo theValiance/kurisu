@@ -1,4 +1,4 @@
-0.3{
+0.3.0{
 +fs.readFile function wrapped in readFile to return a promise for consistency
 +commands are now split at spaces. The bot analyzes commands starting after an @mention
 -Removed pullComand function and associated variables
