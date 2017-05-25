@@ -11,24 +11,22 @@ var booru = require('./booru');
 var token = '';
 var masterID = 0;
 var admins = [];
-var commandIndicator = '!';
+
+function readFile(fileName, encoding) { //wraps fs.readFile as a Promise for consistency
+	return new Promise((resolve, reject)) => {
+		fs.readFile(fileName, encoding, (err, data) => {
+			if (!err) {
+				resolve(data);
+			}
+			else {
+				reject(err);
+			}
+		});
+	});
+}
 
 function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for bots)
 	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
-}
-
-function pullCommand(string){
-	var start = string.indexOf(commandIndicator);
-	if (start != -1){
-		var i = (start + 1);
-		while ((i < string.length) && (string.charAt(i) != ' ')){
-			i++;
-		}
-		return string.slice(start + 1, i);
-	}
-	else{
-		return -1;
-	}
 }
 
 function fetchServerData(id, callback){
@@ -88,8 +86,15 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('message', (msg) => {
-	var command = pullCommand(msg.content);
 	console.log(`${msg.author.username}: ${msg}`);
+	var comArray = msg.content.split(" ");
+	var index = comArray.indexOf(`<@!${client.user.id}>`);
+	var command = "";
+	if (index != -1) {
+		command = comArray[index + 1];
+	}
+	else { //bot was not mentioned
+	}
 	if (command == 'update'){
 		msg.channel.send('Checking for updates...')
 			.then((msg) =>{
