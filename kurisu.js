@@ -12,7 +12,7 @@ var token = '';
 var masterID = 0;
 var admins = [];
 
-function readFile(fileName, encoding) { //wraps fs.readFile as a Promise for consistency
+function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for consistency
 	return new Promise((resolve, reject)) => {
 		fs.readFile(fileName, encoding, (err, data) => {
 			if (!err) {
