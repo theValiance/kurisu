@@ -13,7 +13,7 @@ var masterID = 0;
 var admins = [];
 
 function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for consistency
-	return new Promise((resolve, reject)) => {
+	return new Promise((resolve, reject) => {
 		fs.readFile(fileName, encoding, (err, data) => {
 			if (!err) {
 				resolve(data);
