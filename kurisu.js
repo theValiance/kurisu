@@ -25,7 +25,7 @@ function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for co
 	});
 }
 
-function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for bots)
+function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for nicknamed users)
 	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
 }
 
