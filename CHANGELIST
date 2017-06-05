@@ -1,3 +1,8 @@
+0.3.1{
++Bot configuration data is all stored in one .json file instead of many .txt files
++Bootup time should be slightly faster now
++Some changes to make the code more consistent
+}
 0.3.0{
 +fs.readFile function wrapped in readFile to return a promise for consistency
 +commands are now split at spaces. The bot analyzes commands starting after an @mention
