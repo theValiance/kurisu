@@ -164,31 +164,25 @@ client.on('message', (msg) => {
 });
 
 
-//read private startup files
-fs.readFile('masterId.txt', 'utf8', (err, data) =>{
-	if (!err){
-		masterID = data.replace('\n', '');
+//load data from bot config file
+preadFile("botConfig.json", "utf8")
+	.then((file) => {
+		var json = JSON.parse(file);
+		masterID = json["masterID"];
+		token = json["token"];
+		admins = json["admins"];
+		if (admins.indexOf(masterID) == -1){
+			admins.push(masterID);
+		}
 		console.log(`Master ID: ${masterID}`);
-	}
-});
-fs.readFile('adminList.txt', 'utf8', (err, data) => {
-	if (!err){
-		admins = data.split('\n');
-		admins.pop();
 		console.log(`Admins: ${admins}`);
-	}
-});
-fs.readFile('token.txt', 'utf8', (err, data) =>{
-	if (!err){
-		token = data.replace('\n', '');
 		console.log(`Token: ${token}`);
 		client.login(token)
-			.then((string)=>{
-				console.log(string);
+			.then((res)=>{
+				console.log(res);
 			})
-			.catch((reason)=>{
-				console.log(`Client login error, reason: ${reason}`);
+			.catch((res)=>{
+				console.log(`Client login error, reason: ${res}`);
 				process.exit(1);
 			});
-	}
-});
+	});
