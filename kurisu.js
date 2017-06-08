@@ -95,14 +95,19 @@ client.on('guildMemberAdd', (member) => {
 
 client.on('message', (msg) => {
 	console.log(`${msg.author.username}: ${msg}`);
-	var comArray = msg.content.split(" ");
-	var index = comArray.findIndex(botMentioned(false));
-	//var index = comArray.indexOf(`<@!${client.user.id}>`);
+	var wordArray = msg.content.split(" ");
 	var command = "";
-	if (index != -1) {
-		command = comArray[index + 1];
+	var index = 0;
+	if (msg.channel.type == "group" || msg.channel.type == "text"){ //if not directly messaged, require/search for an @mention
+		var index = wordArray.findIndex(botMentioned(false));
+		if (index != -1) {
+			command = wordArray[index + 1];
+		}
+		else{ //bot was not mentioned
+		}
 	}
-	else { //bot was not mentioned
+	else if (msg.channel.type == "dm"){ //direct message assumes command attempt, no need for @mention
+		command = wordArray[0];
 	}
 	if (command == 'update'){
 		msg.channel.send('Checking for updates...')
