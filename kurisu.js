@@ -68,13 +68,16 @@ function updateServerSetting(id, setting, value, callback){
 	
 }
 
-function botMentioned(suppressGlobals){
+function botMentioned(suppressGlobals, suppressRoles){
 	return function(item){
 		if ((item == `<@!${client.user.id}>`) || (item == `<@${client.user.id}>`)){
 			return true;
 		}
 		else if((!suppressGlobals) && ((item == "@everyone") || (item == "@here"))){
 			return true;
+		}
+		else if(!suppressRoles){
+			if item
 		}
 		return false;
 	};
@@ -90,7 +93,7 @@ client.on('disconnect', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-	member.guild.defaultChannel.send(`Let's all welcome ${member.user.username} to the server!`);
+	member.guild.defaultChannel.send(`Let's all welcome <@${member.user.username}> to the server!`);
 });
 
 client.on('message', (msg) => {
@@ -99,7 +102,7 @@ client.on('message', (msg) => {
 	var command = "";
 	var index = 0;
 	if (msg.channel.type == "group" || msg.channel.type == "text"){ //if not directly messaged, require/search for an @mention
-		var index = wordArray.findIndex(botMentioned(false));
+		var index = wordArray.findIndex(botMentioned(false, false));
 		if (index != -1) {
 			command = wordArray[index + 1];
 		}
