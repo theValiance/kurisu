@@ -1,3 +1,8 @@
+0.3.2{
++Direct messaging the bot should no longer require an @mention indicator
++It is now possible to execute a command using @everyone or @here as the @mention indicator
++Fixed an issue with @mention detection (users with nicknames had different @ indicators than those who didn't)
+}
 0.3.1{
 +Bot configuration data is all stored in one .json file instead of many .txt files
 +Bootup time should be slightly faster now
