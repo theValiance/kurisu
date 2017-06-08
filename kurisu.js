@@ -70,7 +70,7 @@ function updateServerSetting(id, setting, value, callback){
 
 function botMentioned(suppressGlobals){
 	return function(item){
-		if ((item == `<@!${client.user.id}>`) || (item == `<@${client.user.id}`)){
+		if ((item == `<@!${client.user.id}>`) || (item == `<@${client.user.id}>`)){
 			return true;
 		}
 		else if((!suppressGlobals) && ((item == "@everyone") || (item == "@here"))){
