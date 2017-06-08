@@ -77,7 +77,6 @@ function botMentioned(suppressGlobals, suppressRoles){
 			return true;
 		}
 		else if(!suppressRoles){
-			if item
 		}
 		return false;
 	};
