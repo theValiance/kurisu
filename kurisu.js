@@ -25,10 +25,6 @@ function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for co
 	});
 }
 
-function messageContainsMention(message, mentioned){ //requires an ID to check for (<@id> for users, <#id> for channels, <@!id> for nicknamed users)
-	return ((message.content.search('<@' + mentioned + '>') != -1) || (message.content.search('<#' + mentioned + '>') != -1) || (message.content.search('<@!' + mentioned + '>') != -1));
-}
-
 function fetchServerData(id, callback){
 	return new Promise((resolve, reject) => {
 		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
@@ -72,6 +68,18 @@ function updateServerSetting(id, setting, value, callback){
 	
 }
 
+function botMentioned(suppressGlobals){
+	return function(item){
+		if ((item == `<@!${client.user.id}>`) || (item == `<@${client.user.id}`)){
+			return true;
+		}
+		else if((!suppressGlobals) && ((item == "@everyone") || (item == "@here"))){
+			return true;
+		}
+		return false;
+	};
+}
+
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
 });
@@ -88,7 +96,8 @@ client.on('guildMemberAdd', (member) => {
 client.on('message', (msg) => {
 	console.log(`${msg.author.username}: ${msg}`);
 	var comArray = msg.content.split(" ");
-	var index = comArray.indexOf(`<@!${client.user.id}>`);
+	var index = comArray.findIndex(botMentioned(false));
+	//var index = comArray.indexOf(`<@!${client.user.id}>`);
 	var command = "";
 	if (index != -1) {
 		command = comArray[index + 1];
