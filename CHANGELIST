@@ -1,3 +1,6 @@
+0.3.3{
++Fixed a small bug with the @mention detector
+}
 0.3.2{
 +Direct messaging the bot should no longer require an @mention indicator
 +It is now possible to execute a command using @everyone or @here as the @mention indicator
