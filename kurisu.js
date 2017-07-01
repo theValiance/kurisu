@@ -1,18 +1,16 @@
 "use strict";
 
-//set up the discord client and require external files
+//required files
 var Discord = require("discord.js");
-var client = new Discord.Client();
 var exec = require('child_process').exec;
 var fs = require('fs');
 var booru = require('./booru');
 
-//global vars
-var token = '';
-var masterID = 0;
-var admins = [];
+//global variables
+var config = {};
+var client = new Discord.Client();
 
-function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for consistency
+function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for consistency [may change function name in the future]
 	return new Promise((resolve, reject) => {
 		fs.readFile(fileName, encoding, (err, data) => {
 			if (!err) {
@@ -25,7 +23,7 @@ function preadFile(fileName, encoding) { //wraps fs.readFile as a Promise for co
 	});
 }
 
-function fetchServerData(id, callback){
+function fetchServerConfig(id, callback){
 	return new Promise((resolve, reject) => {
 		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
 			if (!err){
@@ -38,20 +36,7 @@ function fetchServerData(id, callback){
 	});
 }
 
-function fetchServerSetting(id, setting, callback){
-	return new Promise((resolve, reject) => {
-		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
-			if (!err){
-				resolve(JSON.parse(data)[setting]);
-			}
-			else{
-				reject();
-			}
-		});
-	});
-}
-
-function updateServerSetting(id, setting, value, callback){
+function saveServerConfig(id, setting, value, callback){ //this function still needs to be updated
 	return new Promise((resolve, reject) => {
 		fs.readFile(`s${id}.json`, 'utf8', (err, data) => {
 			if (!err){
@@ -163,15 +148,6 @@ client.on('message', (msg) => {
 	else if (command == 'help'){
 		msg.channel.send('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
 	}
-	else if (command == 'test1'){
-		//updateServerSetting(msg.guild.id, 'test1', msg.content);
-	}
-	else if (command == 'test2'){
-		fetchServerData(msg.guild.id).then((data) => {
-			console.log(JSON.stringify(data));
-			msg.channel.send(JSON.stringify(data));
-		});
-	}
 	else if (command == 'gelbooru'){
 		booru.gelbooru().then((data) => {
 			msg.channel.send(data);
@@ -180,20 +156,16 @@ client.on('message', (msg) => {
 });
 
 
-//load data from bot config file
+//load configuration settings from file and connect the bot to discord
 preadFile("botConfig.json", "utf8")
 	.then((file) => {
-		var json = JSON.parse(file);
-		masterID = json["masterID"];
-		token = json["token"];
-		admins = json["admins"];
-		if (admins.indexOf(masterID) == -1){
-			admins.push(masterID);
+		config = JSON.parse(file);
+		if (admins.indexOf(config["masterID"]) == -1){
+			admins.push(config["masterID"]);
 		}
-		console.log(`Master ID: ${masterID}`);
-		console.log(`Admins: ${admins}`);
-		console.log(`Token: ${token}`);
-		client.login(token)
+		console.log(`Master ID: ${config['masterID']}`);
+		console.log(`Admins: ${config['admins']}`);
+		client.login(config['token'])
 			.then((res)=>{
 				console.log(res);
 			})
