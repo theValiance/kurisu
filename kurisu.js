@@ -157,7 +157,7 @@ client.on('message', (msg) => {
 
 
 //load configuration settings from file and connect the bot to discord
-preadFile("botConfig.json", "utf8")
+preadFile("config.json", "utf8")
 	.then((file) => {
 		config = JSON.parse(file);
 		if (admins.indexOf(config["masterID"]) == -1){
