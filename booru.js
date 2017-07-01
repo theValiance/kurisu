@@ -1,7 +1,7 @@
 //script file for interacting with booru apis
 var request = require('request');
 
-var timeout = 10000;
+var timeout = 5000;
 
 exports.gelbooru = function(){
 	var url = `https://gelbooru.com/index.php?page=dapi&s=post&json=1&q=index&limit=1&tags=rating:safe+score:>=40&pid=${Math.floor((Math.random() * 9995)+1)}`;
