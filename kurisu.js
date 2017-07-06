@@ -169,8 +169,8 @@ client.on('message', (msg) => {
 preadFile("config.json", "utf8")
 	.then((file) => {
 		config = JSON.parse(file);
-		if (admins.indexOf(config["masterID"]) == -1){
-			admins.push(config["masterID"]);
+		if (config["admins"].indexOf(config["masterID"]) == -1){
+			config["admins"].push(config["masterID"]);
 		}
 		console.log(`Master ID: ${config['masterID']}`);
 		console.log(`Admins: ${config['admins']}`);
