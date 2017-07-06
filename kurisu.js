@@ -53,7 +53,7 @@ function saveServerConfig(id, setting, value, callback){ //this function still n
 	
 }
 
-function botMentioned(suppressGlobals, suppressRoles){
+function botMentioned(guild, suppressGlobals, suppressRoles){
 	return function(item){
 		if ((item == `<@!${client.user.id}>`) || (item == `<@${client.user.id}>`)){
 			return true;
@@ -61,7 +61,8 @@ function botMentioned(suppressGlobals, suppressRoles){
 		else if((!suppressGlobals) && ((item == "@everyone") || (item == "@here"))){
 			return true;
 		}
-		else if(!suppressRoles){
+		else if(!suppressRoles && (guild != null)){
+			//if guild.me.roles
 		}
 		return false;
 	};
@@ -86,15 +87,23 @@ client.on('message', (msg) => {
 	var command = "";
 	var index = 0;
 	if (msg.channel.type == "group" || msg.channel.type == "text"){ //if not directly messaged, require/search for an @mention
-		var index = wordArray.findIndex(botMentioned(false, false));
+		if (msg.channel.type == "text"){
+			var index = wordArray.findIndex(botMentioned(msg.guild, false, false));
+		}
+		else if (msg.channel.type == "group"){
+			var index = wordArray.findIndex(botMentioned(null, false, false));
+		}
 		if (index != -1) {
 			command = wordArray[index + 1];
+			//command scrubbing goes here
 		}
-		else{ //bot was not mentioned
+		else{
+			//bot was not mentioned
 		}
 	}
 	else if (msg.channel.type == "dm"){ //direct message assumes command attempt, no need for @mention
 		command = wordArray[0];
+		//command scrubbing goes here
 	}
 	if (command == 'update'){
 		msg.channel.send('Checking for updates...')
