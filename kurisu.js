@@ -167,6 +167,7 @@ client.on('message', (msg) => {
 	*/
 	else if (command == 'youtube'){
     		if (msg.member.voiceChannel) {
+			const streamOptions = {seek: 0, volume: 1};
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
 				const url = wordArray[index+2];
@@ -174,7 +175,6 @@ client.on('message', (msg) => {
 					connection.on('error', (err) => {
 						console.log(err);
 					});
-					const streamOptions = {seek: 0, volume: 1 };
 					const stream = ytdl(url, {filter : 'audioonly'});
 					const dispatcher = connection.playStream(stream, streamOptions);
 					dispatcher.on('end', () => {
