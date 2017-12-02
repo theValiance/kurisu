@@ -169,7 +169,7 @@ client.on('message', (msg) => {
     		if (msg.member.voiceChannel) {
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
-				const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';//wordArray[index+2];
+				const url = wordArray[index+2];
 				if (ytdl.validateURL(url)){
 					const stream = ytdl(url, { filter: 'audioonly' });
 					const dispatcher = connection.playStream(stream);
