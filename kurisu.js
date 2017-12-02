@@ -171,7 +171,7 @@ client.on('message', (msg) => {
 			.then(connection => { // Connection is an instance of VoiceConnection
 				const url = wordArray[index+2];
 				if (ytdl.validateURL(url)){
-					const stream = ytdl(url, { filter: 'audioonly' }).pipe(fs.createWriteStream('video.flv'));;
+					const stream = ytdl(url, { filter: 'audioonly' });
 					const dispatcher = connection.playStream(stream);
 					dispatcher.on('end', () => {
 						msg.member.voiceChannel.leave();
