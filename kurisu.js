@@ -4,7 +4,7 @@
 var Discord = require("discord.js");
 var exec = require('child_process').exec;
 var fs = require('fs');
-#var booru = require('./booru');
+//var booru = require('./booru');
 var ytdl = require('ytdl-core');
 
 //global variables
