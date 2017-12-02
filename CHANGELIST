@@ -1,3 +1,6 @@
+0.3.4{
++Fixed an issue with the new member welcome message
+}
 0.3.3{
 +Fixed a small bug with the @mention detector
 }
