@@ -175,6 +175,9 @@ client.on('message', (msg) => {
 				dispatcher.on('end', () => {
   					msg.member.voiceChannel.leave()
 				});
+				dispatcher.on('error', (err) => {
+					console.log(err);
+				});
         		})
 			.catch(console.error);
 		}
