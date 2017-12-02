@@ -171,6 +171,9 @@ client.on('message', (msg) => {
 			.then(connection => { // Connection is an instance of VoiceConnection
 				const url = wordArray[index+2];
 				if (ytdl.validateURL(url)){
+					connection.on('error', (err) => {
+						console.log(err);
+					});
 					const streamOptions = {seek: 0, volume: 1 };
 					const stream = ytdl(url, {filter : 'audioonly'});
 					const dispatcher = connection.playStream(stream, streamOptions);
