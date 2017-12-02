@@ -158,16 +158,19 @@ client.on('message', (msg) => {
 	else if (command == 'help'){
 		msg.channel.send('This is a placeholder command. It will be used to provide a command list as well as command specialized help.');
 	}
+	/*
 	else if (command == 'gelbooru'){
 		booru.gelbooru().then((data) => {
 			msg.channel.send(data);
 		});
 	}
+	*/
 	else if (command == 'youtube'){
     		if (msg.member.voiceChannel) {
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
-          			const stream = ytdl(wordArray[index+2], { filter : 'audioonly' });
+				console.log(wordArray[index+2]);
+          			const stream = ytdl(wordArray[index+2], {filter : 'audioonly'});
 				const streamOptions = {seek: 0, volume: 0.5};
 				const dispatcher = connection.playStream(stream, streamOptions);
 				dispatcher.on('end', () => {
