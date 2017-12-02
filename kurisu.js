@@ -78,7 +78,7 @@ client.on('disconnect', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-	member.guild.defaultChannel.send(`Let's all welcome <@${member.user.username}> to the server!`);
+	member.guild.defaultChannel.send(`Let's all welcome <@${member.user.id}> to the server!`);
 });
 
 client.on('message', (msg) => {
