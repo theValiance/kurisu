@@ -5,6 +5,7 @@ var Discord = require("discord.js");
 var exec = require('child_process').exec;
 var fs = require('fs');
 var booru = require('./booru');
+var ytdl = require('ytdl-core');
 
 //global variables
 var config = {};
@@ -161,6 +162,19 @@ client.on('message', (msg) => {
 		booru.gelbooru().then((data) => {
 			msg.channel.send(data);
 		});
+	}
+	else if (command == 'youtube'){
+    		if (message.member.voiceChannel) {
+			message.member.voiceChannel.join()
+			.then(connection => { // Connection is an instance of VoiceConnection
+          			const stream = ytdl(wordArray[index+2], { filter : 'audioonly' });
+				const streamOptions = {seek: 0, volume: 0.5};
+				const dispatcher = connection.playStream(stream, streamOptions);
+				dispatcher.on('end', () => {
+  					message.member.voiceChannel.leave()
+				});
+        		})
+		}
 	}
 });
 
