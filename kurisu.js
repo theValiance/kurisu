@@ -169,12 +169,12 @@ client.on('message', (msg) => {
     		if (msg.member.voiceChannel) {
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
-          			const stream = ytdl(wordArray[index+2], {filter : 'audioonly'});
 				const streamOptions = {seek: 0, volume: 1 };
+          			const stream = ytdl(wordArray[index+2], {filter : 'audioonly'});
 				const dispatcher = connection.playStream(stream, streamOptions);
-				//dispatcher.on('end', () => {
-  				//	msg.member.voiceChannel.leave()
-				//});
+				dispatcher.on('end', () => {
+  					msg.member.voiceChannel.leave()
+				});
         		})
 			.catch(console.error);
 		}
