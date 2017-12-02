@@ -173,13 +173,15 @@ client.on('message', (msg) => {
           			const stream = ytdl(wordArray[index+2], {filter : 'audioonly'});
 				const dispatcher = connection.playStream(stream, streamOptions);
 				dispatcher.on('end', () => {
-  					msg.member.voiceChannel.leave()
+  					msg.member.voiceChannel.leave();
 				});
 				dispatcher.on('error', (err) => {
 					console.log(err);
 				});
         		})
-			.catch(console.error);
+			.catch((err) => {
+				console.log(err);
+			});
 		}
 	}
 });
