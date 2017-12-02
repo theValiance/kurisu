@@ -176,7 +176,7 @@ client.on('message', (msg) => {
 					});
 					const streamOptions = {seek: 0, volume: 1 };
 					const stream = ytdl(url, {filter : 'audioonly'});
-					const dispatcher = connection.playStream(stream, streamOptions);
+					const dispatcher = connection.playOpusStream(stream, streamOptions);
 					dispatcher.on('end', () => {
 						msg.member.voiceChannel.leave();
 					});
