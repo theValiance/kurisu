@@ -167,23 +167,17 @@ client.on('message', (msg) => {
 	*/
 	else if (command == 'youtube'){
     		if (msg.member.voiceChannel) {
-			const streamOptions = {seek: 0, volume: 1};
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
-				const url = wordArray[index+2];
+				const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';//wordArray[index+2];
 				if (ytdl.validateURL(url)){
-					connection.on('error', (err) => {
-						console.log(err);
+					const stream = ytdl(url, { filter: 'audioonly' });{
+					const dispatcher = connection.playStream(stream);
+					dispatcher.on('end', () => {
+						msg.member.voiceChannel.leave();
 					});
-					const stream = ytdl(url, {filter : 'audioonly'});
-					stream.on('response', (res) => {
-						const dispatcher = connection.playStream(stream, streamOptions);
-						dispatcher.on('end', () => {
-							msg.member.voiceChannel.leave();
-						});
-						dispatcher.on('error', (err) => {
-							console.log(err);
-						});
+					dispatcher.on('error', (err) => {
+						console.log(err);
 					});
 				}
 				else{
