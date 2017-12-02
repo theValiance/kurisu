@@ -176,6 +176,9 @@ client.on('message', (msg) => {
 						console.log(err);
 					});
 					const stream = ytdl(url, {filter : 'audioonly'});
+					stream.on('response', (res) => {
+						console.log(res);
+					});
 					const dispatcher = connection.playStream(stream, streamOptions);
 					dispatcher.on('end', () => {
 						msg.member.voiceChannel.leave();
