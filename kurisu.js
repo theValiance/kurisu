@@ -169,15 +169,21 @@ client.on('message', (msg) => {
     		if (msg.member.voiceChannel) {
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
-				const streamOptions = {seek: 0, volume: 1 };
-          			const stream = ytdl(wordArray[index+2], {filter : 'audioonly'});
-				const dispatcher = connection.playStream(stream, streamOptions);
-				dispatcher.on('end', () => {
-  					msg.member.voiceChannel.leave();
-				});
-				dispatcher.on('error', (err) => {
-					console.log(err);
-				});
+				const url = wordArray[index+2];
+				if (ytdl.validateURL(url)){
+					const streamOptions = {seek: 0, volume: 1 };
+					const stream = ytdl(url, {filter : 'audioonly'});
+					const dispatcher = connection.playStream(stream, streamOptions);
+					dispatcher.on('end', () => {
+						msg.member.voiceChannel.leave();
+					});
+					dispatcher.on('error', (err) => {
+						console.log(err);
+					});
+				}
+				else{
+					console.log("Invalid URL!");
+				}
         		})
 			.catch((err) => {
 				console.log(err);
