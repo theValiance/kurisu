@@ -169,14 +169,14 @@ client.on('message', (msg) => {
     		if (msg.member.voiceChannel) {
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
-				console.log(wordArray[index+2]);
           			const stream = ytdl(wordArray[index+2], {filter : 'audioonly'});
-				const streamOptions = {seek: 0, volume: 0.5};
+				const streamOptions = {seek: 0, volume: 1 };
 				const dispatcher = connection.playStream(stream, streamOptions);
-				dispatcher.on('end', () => {
-  					msg.member.voiceChannel.leave()
-				});
+				//dispatcher.on('end', () => {
+  				//	msg.member.voiceChannel.leave()
+				//});
         		})
+			.catch(console.error);
 		}
 	}
 });
