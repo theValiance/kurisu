@@ -164,14 +164,14 @@ client.on('message', (msg) => {
 		});
 	}
 	else if (command == 'youtube'){
-    		if (message.member.voiceChannel) {
-			message.member.voiceChannel.join()
+    		if (msg.member.voiceChannel) {
+			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
           			const stream = ytdl(wordArray[index+2], { filter : 'audioonly' });
 				const streamOptions = {seek: 0, volume: 0.5};
 				const dispatcher = connection.playStream(stream, streamOptions);
 				dispatcher.on('end', () => {
-  					message.member.voiceChannel.leave()
+  					msg.member.voiceChannel.leave()
 				});
         		})
 		}
