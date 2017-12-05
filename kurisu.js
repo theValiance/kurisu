@@ -69,6 +69,22 @@ function botMentioned(guild, suppressGlobals, suppressRoles){
 	};
 }
 
+function playStream(connection, url){
+	if (ytdl.validateURL(url)){
+		const stream = ytdl(url, { filter: 'audioonly' });
+		const dispatcher = connection.playStream(stream);
+		dispatcher.on('end', () => {
+			playSteam(connection, url);
+		});
+		dispatcher.on('error', (err) => {
+			console.log(err);
+		});
+	}
+	else{
+		console.log("Invalid URL!");
+	}
+}
+
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.username}`);
 });
@@ -170,19 +186,7 @@ client.on('message', (msg) => {
 			msg.member.voiceChannel.join()
 			.then(connection => { // Connection is an instance of VoiceConnection
 				const url = wordArray[index+2];
-				if (ytdl.validateURL(url)){
-					const stream = ytdl(url, { filter: 'audioonly' });
-					const dispatcher = connection.playStream(stream);
-					dispatcher.on('end', () => {
-						msg.member.voiceChannel.leave();
-					});
-					dispatcher.on('error', (err) => {
-						console.log(err);
-					});
-				}
-				else{
-					console.log("Invalid URL!");
-				}
+				playStream(connection, url);
         		})
 			.catch((err) => {
 				console.log(err);
