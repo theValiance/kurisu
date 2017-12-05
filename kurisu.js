@@ -82,6 +82,7 @@ function playStream(connection, url){
 	}
 	else{
 		console.log("Invalid URL!");
+		connection.leave();
 	}
 }
 
