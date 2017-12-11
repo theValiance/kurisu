@@ -194,6 +194,9 @@ client.on('message', (msg) => {
 			});
 		}
 	}
+	else if (command == 'choose'){
+		msg.channel.send(wordArray[Math.floor(Math.random()*(wordArray.length-2)) + 2]);
+	}
 });
 
 
