@@ -74,7 +74,7 @@ function playStream(connection, url){
 		const stream = ytdl(url, { filter: 'audioonly' });
 		const dispatcher = connection.playStream(stream);
 		dispatcher.on('end', () => {
-			connection.leave();
+			connection.disconnect();
 		});
 		dispatcher.on('error', (err) => {
 			console.log(err);
@@ -82,7 +82,7 @@ function playStream(connection, url){
 	}
 	else{
 		console.log("Invalid URL!");
-		connection.leave();
+		connection.disconnect();
 	}
 }
 
